@@ -4,20 +4,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Biblioteca de Cantos Litúrgicos: músicas, cifras e recursos para a celebração da Missa.">
+  <meta name="theme-color" content="#176b4d">
   <title>Biblioteca de Cantos Litúrgicos</title>
   <style>
     :root {
-      --verde: #245447;
-      --fundo: #f6f7f4;
-      --texto: #26332e;
+      --verde: #176b4d;
+      --verde-claro: #eaf5ef;
+      --fundo: #f7f9f7;
+      --texto: #24352c;
+      --borda: #dce7df;
     }
 
     * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       background: var(--fundo);
       color: var(--texto);
       line-height: 1.6;
@@ -26,176 +28,436 @@
     header {
       background: var(--verde);
       color: white;
-      padding: 22px 18px;
-      text-align: center;
+      padding: 28px 18px;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: clamp(24px, 4vw, 36px);
+    .topo, main, footer {
+      max-width: 1050px;
+      margin: auto;
     }
 
-    header p { margin-bottom: 0; }
+    .marca {
+      font-size: 25px;
+      font-weight: bold;
+      margin: 0 0 5px;
+    }
+
+    header p { margin: 0 0 16px; }
 
     nav {
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
-      gap: 10px;
-      padding: 14px;
-      background: white;
-      border-bottom: 1px solid #ddd;
+      gap: 15px;
     }
 
     nav a {
-      color: var(--verde);
+      color: white;
       text-decoration: none;
-      font-weight: bold;
-      padding: 8px 12px;
     }
 
-    main {
-      max-width: 950px;
-      margin: 32px auto;
-      padding: 0 18px;
-    }
+    nav a:hover { text-decoration: underline; }
 
-    .boas-vindas {
-      text-align: center;
-      padding: 25px 10px;
-    }
+    main { padding: 26px 18px 45px; }
+
+    .apresentacao { margin-bottom: 24px; }
+
+    h1 { font-size: 30px; line-height: 1.2; }
+
+    h2 { font-size: 23px; }
 
     .busca {
-      display: flex;
-      gap: 8px;
-      max-width: 650px;
-      margin: 22px auto;
+      background: white;
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 20px 0;
     }
 
-    input {
-      min-width: 0;
-      flex: 1;
-      padding: 13px;
-      border: 1px solid #aaa;
+    label {
+      display: block;
+      font-weight: bold;
+      margin: 10px 0 5px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #b9cbbf;
       border-radius: 8px;
+      background: white;
       font-size: 16px;
     }
 
-    button {
-      background: var(--verde);
-      color: white;
+    .filtros {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    button, .botao {
       border: 0;
       border-radius: 8px;
-      padding: 12px 18px;
-      font-size: 16px;
+      padding: 11px 15px;
+      font-size: 15px;
       cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
     }
 
-    .cartoes {
+    .primario {
+      background: var(--verde);
+      color: white;
+      margin-top: 14px;
+    }
+
+    .secundario {
+      background: var(--verde-claro);
+      color: var(--verde);
+    }
+
+    .grade {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 16px;
-      margin-top: 25px;
     }
 
     .cartao {
-      display: block;
-      padding: 22px;
       background: white;
-      border: 1px solid #e1e5e0;
+      border: 1px solid var(--borda);
       border-radius: 12px;
-      color: var(--texto);
-      text-decoration: none;
+      padding: 17px;
     }
 
-    .cartao h3 { color: var(--verde); margin-top: 0; }
+    .cartao h3 { margin: 7px 0; }
 
-    .aviso {
-      margin-top: 28px;
-      padding: 16px;
-      background: #e8eee9;
+    .etiqueta {
+      color: var(--verde);
+      background: var(--verde-claro);
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 20px;
+      font-size: 13px;
+    }
+
+    .detalhe {
+      background: white;
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 22px;
+    }
+
+    .letra {
+      white-space: pre-wrap;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 17px;
+      line-height: 2;
+    }
+
+    .acordes {
+      background: #f0f5f1;
+      padding: 12px;
       border-radius: 8px;
+      overflow-wrap: anywhere;
     }
+
+    .vazio { padding: 20px 0; }
 
     footer {
-      text-align: center;
-      padding: 24px;
-      color: #59645e;
+      padding: 22px 18px;
+      border-top: 1px solid var(--borda);
+      color: #5a6d61;
       font-size: 14px;
+    }
+
+    [hidden] { display: none !important; }
+
+    @media (max-width: 720px) {
+      .grade { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 480px) {
+      .grade, .filtros { grid-template-columns: 1fr; }
+      h1 { font-size: 26px; }
+    }
+
+    @media print {
+      header, nav, .busca, .grade, footer, .nao-imprimir {
+        display: none !important;
+      }
+      body { background: white; }
+      main { padding: 0; }
+      .detalhe { border: 0; }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Biblioteca de Cantos Litúrgicos</h1>
-    <p>Música a serviço da liturgia</p>
+    <div class="topo">
+      <p class="marca">Biblioteca de Cantos Litúrgicos</p>
+      <p>Músicas, cifras e recursos para a liturgia católica.</p>
+      <nav aria-label="Navegação principal">
+        <a href="#inicio">Início</a>
+        <a href="#catalogo">Todas as músicas</a>
+        <a href="#pesquisa">Pesquisar cantos</a>
+      </nav>
+    </div>
   </header>
 
-  <nav aria-label="Menu principal">
-    <a href="#inicio">Início</a>
-    <a href="#celebracoes">Celebrações</a>
-    <a href="#tempos">Tempos litúrgicos</a>
-    <a href="#musicas">Todas as músicas</a>
-  </nav>
-
   <main id="inicio">
-    <section class="boas-vindas">
-      <h2>Encontre os cantos para a sua celebração</h2>
-      <p>Um espaço para organizar músicas litúrgicas,
-      letras, cifras e recursos para equipes de canto.</p>
-
-      <form class="busca" onsubmit="event.preventDefault(); alert('A busca será ativada na próxima etapa do projeto.');">
-        <input type="search"
-          aria-label="Buscar música"
-          placeholder="Busque por música, canto ou celebração">
-        <button type="submit">Buscar</button>
-      </form>
+    <section class="apresentacao">
+      <h1>Encontre o canto para cada celebração</h1>
+      <p>Pesquise por título, momento da Missa, tempo litúrgico ou ano litúrgico.</p>
     </section>
 
-    <section id="celebracoes">
-      <h2>Por onde você quer começar?</h2>
+    <section class="busca" id="pesquisa">
+      <h2>Pesquisar músicas</h2>
+      <label for="termo">Nome da música ou palavra da letra</label>
+      <input id="termo" type="search" placeholder="Ex.: comunhão, aleluia, entrada">
 
-      <div class="cartoes">
-        <a class="cartao" href="#celebracoes">
-          <h3>📅 Celebrações</h3>
-          <p>Encontre os cantos para domingos e solenidades.</p>
-        </a>
-
-        <a class="cartao" href="#tempos">
-          <h3>🕊️ Tempos litúrgicos</h3>
-          <p>Advento, Natal, Quaresma, Páscoa e Tempo Comum.</p>
-        </a>
-
-        <a class="cartao" href="#musicas">
-          <h3>🎵 Todas as músicas</h3>
-          <p>Consulte o repertório organizado por categorias.</p>
-        </a>
-
-        <a class="cartao" href="#musicas">
-          <h3>🎼 Letras e cifras</h3>
-          <p>Prepare-se para consultar as músicas e seus tons.</p>
-        </a>
+      <div class="filtros">
+        <div>
+          <label for="momento">Momento da Missa</label>
+          <select id="momento">
+            <option value="">Todos os momentos</option>
+            <option>Entrada</option>
+            <option>Ato penitencial</option>
+            <option>Glória</option>
+            <option>Salmo</option>
+            <option>Aclamação ao Evangelho</option>
+            <option>Ofertório</option>
+            <option>Comunhão</option>
+            <option>Ação de graças</option>
+            <option>Final</option>
+          </select>
+        </div>
+        <div>
+          <label for="tempo">Tempo litúrgico</label>
+          <select id="tempo">
+            <option value="">Todos os tempos</option>
+            <option>Advento</option>
+            <option>Natal</option>
+            <option>Quaresma</option>
+            <option>Tempo Pascal</option>
+            <option>Tempo Comum</option>
+            <option>Todos os tempos</option>
+          </select>
+        </div>
+        <div>
+          <label for="ano">Ano litúrgico</label>
+          <select id="ano">
+            <option value="">Todos os anos</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+            <option>Todos os anos</option>
+          </select>
+        </div>
       </div>
+
+      <button class="primario" id="limpar" type="button">Limpar filtros</button>
+      <p id="contador" aria-live="polite"></p>
     </section>
 
-    <section id="tempos" class="aviso">
-      <h2>O calendário litúrgico</h2>
-      <p>O conteúdo será organizado pelos anos litúrgicos
-      A, B e C, pelos tempos litúrgicos e pelas celebrações.</p>
+    <section id="catalogo">
+      <h2>Catálogo de cantos</h2>
+      <div class="grade" id="lista"></div>
+      <p class="vazio" id="sem-resultados" hidden>
+        Nenhum canto encontrado. Experimente mudar os filtros.
+      </p>
     </section>
 
-    <section id="musicas">
-      <h2>Nosso repertório</h2>
-      <p>Estamos preparando o catálogo de músicas.
-      Em breve, esta área terá as letras, cifras,
-      transposição de tons e recursos de áudio e projeção.</p>
+    <section class="detalhe" id="detalhe" hidden>
+      <div class="nao-imprimir">
+        <button class="secundario" id="voltar" type="button">← Voltar ao catálogo</button>
+      </div>
+      <p><span class="etiqueta" id="etiqueta-momento"></span></p>
+      <h2 id="titulo-canto"></h2>
+      <p id="classificacao"></p>
+
+      <div class="nao-imprimir">
+        <button class="secundario" id="diminuir" type="button">Tom −</button>
+        <strong id="tom-atual">Tom: C</strong>
+        <button class="secundario" id="aumentar" type="button">Tom +</button>
+        <button class="secundario" id="imprimir" type="button">Imprimir canto</button>
+      </div>
+
+      <h3>Letra e cifras</h3>
+      <div class="letra" id="letra"></div>
+      <h3>Áudio e recursos</h3>
+      <p id="recursos">Os links de áudio e os slides poderão ser adicionados ao cadastro de cada música.</p>
     </section>
   </main>
 
   <footer>
-    Biblioteca de Cantos Litúrgicos
-    <br>
-    Um projeto independente para os amantes da música litúrgica.
+    Biblioteca de Cantos Litúrgicos · Recurso gratuito para consulta e organização de cantos.
   </footer>
+
+  <script>
+    // Músicas fictícias de demonstração: substitua pelos cantos autorizados.
+    const musicas = [
+      {
+        id: 1,
+        titulo: "Canto de Entrada — Caminhamos na Fé",
+        momento: "Entrada",
+        tempo: "Tempo Comum",
+        ano: "",
+        tom: "C",
+        letra: "[C] Caminhamos juntos na [G] fé\n[Am] Cristo nos reúne em seu [F] amor\n[C] Somos povo a caminho do [G] Pai\n[F] Cantamos a esperança e o [C] amor."
+      },
+      {
+        id: 2,
+        titulo: "Canto de Comunhão — Pão da Vida",
+        momento: "Comunhão",
+        tempo: "Tempo Comum",
+        ano: "",
+        tom: "G",
+        letra: "[G] Pão da vida, alimento de [D] amor\n[Em] Reúne o teu povo, [C] Senhor\n[G] Na Palavra e na [D] Eucaristia\n[C] Caminhamos contigo a cada [G] dia."
+      },
+      {
+        id: 3,
+        titulo: "Canto da Quaresma — Volta para o Senhor",
+        momento: "Ato penitencial",
+        tempo: "Quaresma",
+        ano: "",
+        tom: "Am",
+        letra: "[Am] Volta para o Senhor de [G] coração\n[F] Busca sua misericórdia e [E] perdão\n[Am] Ele acolhe quem deseja [G] recomeçar\n[F] E nos ensina a amar e a [Am] caminhar."
+      }
+    ];
+
+    const $ = id => document.getElementById(id);
+    let musicaAtual = null;
+    let semitons = 0;
+
+    const notas = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
+    const equivalentes = {
+      "Db":"C#", "Eb":"D#", "Gb":"F#", "Ab":"G#", "Bb":"A#",
+      "Cm":"Cm", "C#m":"C#m", "Dm":"Dm", "D#m":"D#m",
+      "Em":"Em", "Fm":"Fm", "F#m":"F#m", "Gm":"Gm",
+      "G#m":"G#m", "Am":"Am", "A#m":"A#m", "Bm":"Bm"
+    };
+
+    function transporAcorde(acorde, deslocamento) {
+      return acorde.replace(/\b([A-G])([#b]?)(m?)(7|9|sus4|add9)?\b/g,
+        (original, nota, acidente, menor, complemento) => {
+          let nome = nota + acidente;
+          nome = equivalentes[nome] || nome;
+          let base = nome.replace(/m$/, "");
+          let indice = notas.indexOf(base);
+          if (indice < 0) return original;
+          let nova = notas[(indice + deslocamento + 120) % 12];
+          return nova + menor + (complemento || "");
+        });
+    }
+
+    function letraTransposta(texto, deslocamento) {
+      if (!deslocamento) return texto;
+      return texto.split("\n").map(linha =>
+        linha.replace(/\[([^\]]+)\]/g, (_, acorde) =>
+          "[" + transporAcorde(acorde, deslocamento) + "]")
+      ).join("\n");
+    }
+
+    function filtrar() {
+      const termo = $("termo").value.trim().toLocaleLowerCase("pt-BR");
+      const momento = $("momento").value;
+      const tempo = $("tempo").value;
+      const ano = $("ano").value;
+
+      return musicas.filter(m => {
+        const texto = (m.titulo + " " + m.letra).toLocaleLowerCase("pt-BR");
+        return (!termo || texto.includes(termo))
+          && (!momento || m.momento === momento)
+          && (!tempo || m.tempo === tempo || m.tempo === "Todos os tempos")
+          && (!ano || m.ano === ano || !m.ano);
+      });
+    }
+
+    function renderizar() {
+      const resultado = filtrar();
+      $("lista").innerHTML = resultado.map(m => `
+        <article class="cartao">
+          <span class="etiqueta">${m.momento}</span>
+          <h3>${escapar(m.titulo)}</h3>
+          <p>${escapar(m.tempo)}</p>
+          <button class="secundario" type="button" data-abrir="${m.id}">
+            Ver letra e cifras
+          </button>
+        </article>
+      `).join("");
+
+      $("contador").textContent =
+        resultado.length + (resultado.length === 1 ? " canto encontrado" : " cantos encontrados");
+      $("sem-resultados").hidden = resultado.length > 0;
+      $("lista").hidden = resultado.length === 0;
+    }
+
+    function escapar(texto) {
+      return String(texto).replace(/[&<>"']/g, c => ({
+        "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+      })[c]);
+    }
+
+    function abrirMusica(id) {
+      musicaAtual = musicas.find(m => m.id === id);
+      if (!musicaAtual) return;
+      semitons = 0;
+      $("catalogo").hidden = true;
+      $("pesquisa").hidden = true;
+      $("detalhe").hidden = false;
+      $("etiqueta-momento").textContent = musicaAtual.momento;
+      $("titulo-canto").textContent = musicaAtual.titulo;
+      $("classificacao").textContent =
+        "Tempo litúrgico: " + musicaAtual.tempo +
+        (musicaAtual.ano ? " · Ano " + musicaAtual.ano : "");
+      atualizarLetra();
+      $("detalhe").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function atualizarLetra() {
+      $("tom-atual").textContent =
+        "Tom: " + transporAcorde(musicaAtual.tom, semitons);
+      $("letra").textContent = letraTransposta(musicaAtual.letra, semitons);
+    }
+
+    $("lista").addEventListener("click", e => {
+      const botao = e.target.closest("[data-abrir]");
+      if (botao) abrirMusica(Number(botao.dataset.abrir));
+    });
+
+    ["termo", "momento", "tempo", "ano"].forEach(id => {
+      $(id).addEventListener("input", renderizar);
+      $(id).addEventListener("change", renderizar);
+    });
+
+    $("limpar").addEventListener("click", () => {
+      $("termo").value = "";
+      $("momento").value = "";
+      $("tempo").value = "";
+      $("ano").value = "";
+      renderizar();
+    });
+
+    $("voltar").addEventListener("click", () => {
+      $("detalhe").hidden = true;
+      $("catalogo").hidden = false;
+      $("pesquisa").hidden = false;
+      $("detalhe").scrollIntoView({ behavior: "smooth" });
+    });
+
+    $("diminuir").addEventListener("click", () => {
+      semitons--;
+      atualizarLetra();
+    });
+
+    $("aumentar").addEventListener("click", () => {
+      semitons++;
+      atualizarLetra();
+    });
+
+    $("imprimir").addEventListener("click", () => window.print());
+
+    renderizar();
+  </script>
 </body>
 </html>
