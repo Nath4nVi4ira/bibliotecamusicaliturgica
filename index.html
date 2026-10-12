@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Biblioteca de Cantos Litúrgicos: músicas, cifras e recursos para a celebração da Missa.">
+  <title>Biblioteca de Cantos Litúrgicos</title>
+  <style>
+    :root {
+      --verde: #245447;
+      --fundo: #f6f7f4;
+      --texto: #26332e;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--fundo);
+      color: var(--texto);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--verde);
+      color: white;
+      padding: 22px 18px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: clamp(24px, 4vw, 36px);
+    }
+
+    header p { margin-bottom: 0; }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 14px;
+      background: white;
+      border-bottom: 1px solid #ddd;
+    }
+
+    nav a {
+      color: var(--verde);
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 12px;
+    }
+
+    main {
+      max-width: 950px;
+      margin: 32px auto;
+      padding: 0 18px;
+    }
+
+    .boas-vindas {
+      text-align: center;
+      padding: 25px 10px;
+    }
+
+    .busca {
+      display: flex;
+      gap: 8px;
+      max-width: 650px;
+      margin: 22px auto;
+    }
+
+    input {
+      min-width: 0;
+      flex: 1;
+      padding: 13px;
+      border: 1px solid #aaa;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      background: var(--verde);
+      color: white;
+      border: 0;
+      border-radius: 8px;
+      padding: 12px 18px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .cartoes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 25px;
+    }
+
+    .cartao {
+      display: block;
+      padding: 22px;
+      background: white;
+      border: 1px solid #e1e5e0;
+      border-radius: 12px;
+      color: var(--texto);
+      text-decoration: none;
+    }
+
+    .cartao h3 { color: var(--verde); margin-top: 0; }
+
+    .aviso {
+      margin-top: 28px;
+      padding: 16px;
+      background: #e8eee9;
+      border-radius: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: #59645e;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Biblioteca de Cantos Litúrgicos</h1>
+    <p>Música a serviço da liturgia</p>
+  </header>
+
+  <nav aria-label="Menu principal">
+    <a href="#inicio">Início</a>
+    <a href="#celebracoes">Celebrações</a>
+    <a href="#tempos">Tempos litúrgicos</a>
+    <a href="#musicas">Todas as músicas</a>
+  </nav>
+
+  <main id="inicio">
+    <section class="boas-vindas">
+      <h2>Encontre os cantos para a sua celebração</h2>
+      <p>Um espaço para organizar músicas litúrgicas,
+      letras, cifras e recursos para equipes de canto.</p>
+
+      <form class="busca" onsubmit="event.preventDefault(); alert('A busca será ativada na próxima etapa do projeto.');">
+        <input type="search"
+          aria-label="Buscar música"
+          placeholder="Busque por música, canto ou celebração">
+        <button type="submit">Buscar</button>
+      </form>
+    </section>
+
+    <section id="celebracoes">
+      <h2>Por onde você quer começar?</h2>
+
+      <div class="cartoes">
+        <a class="cartao" href="#celebracoes">
+          <h3>📅 Celebrações</h3>
+          <p>Encontre os cantos para domingos e solenidades.</p>
+        </a>
+
+        <a class="cartao" href="#tempos">
+          <h3>🕊️ Tempos litúrgicos</h3>
+          <p>Advento, Natal, Quaresma, Páscoa e Tempo Comum.</p>
+        </a>
+
+        <a class="cartao" href="#musicas">
+          <h3>🎵 Todas as músicas</h3>
+          <p>Consulte o repertório organizado por categorias.</p>
+        </a>
+
+        <a class="cartao" href="#musicas">
+          <h3>🎼 Letras e cifras</h3>
+          <p>Prepare-se para consultar as músicas e seus tons.</p>
+        </a>
+      </div>
+    </section>
+
+    <section id="tempos" class="aviso">
+      <h2>O calendário litúrgico</h2>
+      <p>O conteúdo será organizado pelos anos litúrgicos
+      A, B e C, pelos tempos litúrgicos e pelas celebrações.</p>
+    </section>
+
+    <section id="musicas">
+      <h2>Nosso repertório</h2>
+      <p>Estamos preparando o catálogo de músicas.
+      Em breve, esta área terá as letras, cifras,
+      transposição de tons e recursos de áudio e projeção.</p>
+    </section>
+  </main>
+
+  <footer>
+    Biblioteca de Cantos Litúrgicos
+    <br>
+    Um projeto independente para os amantes da música litúrgica.
+  </footer>
+</body>
+</html>
