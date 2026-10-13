@@ -1,0 +1,30 @@
+
+{
+  "versao": 1,
+  "musicas": [
+    {
+      "id": 1,
+      "titulo": "Exemplo de canto de entrada",
+      "momento": "Entrada",
+      "tempoLiturgico": "Tempo Comum",
+      "anoLiturgico": "B",
+      "celebracao": "",
+      "letraCifrada": "",
+      "audioYoutube": "",
+      "audioSpotify": "",
+      "slides": []
+    },
+    {
+      "id": 2,
+      "titulo": "Exemplo de canto de comunhão",
+      "momento": "Comunhão",
+      "tempoLiturgico": "Tempo Comum",
+      "anoLiturgico": "B",
+      "celebracao": "",
+      "letraCifrada": "",
+      "audioYoutube": "",
+      "audioSpotify": "",
+      "slides": []
+    }
+  ]
+}
